@@ -8,7 +8,7 @@ RUN = mpirun -np $(NPROC) --oversubscribe ./
 SOURCES = $(wildcard code/*.cpp)
 DEPENDENCIES = $(SOURCES:code/%.cpp=.objects/%.o)
 
-.PHONY: all run graph show send clean oclean
+.PHONY: all run graph show send cluster clean oclean
 
 all: main.x
 	@echo 'Program Compiled.'
@@ -32,6 +32,9 @@ show:
 send:
 	@cp data/*pdf $(OUT)
 
+cluster: main.x
+	@bash scripts/send.sh
+
 main.x: $(DEPENDENCIES)
 	@echo -e 'Compiling' $@ '... \c'
 	@$(CXX) $(FLAGS) $^ -o $@
@@ -43,7 +46,10 @@ main.x: $(DEPENDENCIES)
 	@echo -e 'Done!\n'
 
 clean:
-	@rm -f data/*.pdf data/results/*.csv data/results/*.txt *.x
+	@rm -f data/results/*.csv *.x
+
+rclean:
+	@rm -f data/*.pdf data/results/*.txt
 
 oclean:
-	@rm -f .objects/*.o
+	@rm -f .objects/*.o *.x

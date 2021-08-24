@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROCCESORS_O=16
+NPROC_O=16
 
-qsub -cwd -S /bin/bash -q normal.q@hercules1 -N brinicle -o results/brinicle.out -e results/brinicle.err -pe make $PROCCESORS_O -v PROCCESORS=$PROCCESORS_O settings/job.sh &
+qsub -cwd -S /bin/bash -q normal.q@hercules1 -N mousetrap -o results/mousetrap.out -e results/mousetrap.err -pe make $NPROC_O -v NPROC=$NPROC_O scripts/job.sh &
 
