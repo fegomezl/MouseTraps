@@ -46,7 +46,7 @@ main.x: $(DEPENDENCIES)
 	@echo -e 'Done!\n'
 
 clean:
-	@rm -f data/results/*.csv *.x
+	@rm -f data/results/*.csv data/*.err data/*.out *.x
 
 rclean:
 	@rm -f data/*.pdf data/results/*.txt

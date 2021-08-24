@@ -1,5 +1,5 @@
 #!/bin/bash
 
-NPROC=4
+#NPROC=4
 
 mpiexec -np ${NPROC} ./main.x 

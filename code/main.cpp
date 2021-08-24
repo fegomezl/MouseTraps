@@ -56,8 +56,8 @@ int main (int argc, char **argv){
         if (ii % config.resolution == 0){
             print(ii/config.resolution, pid, config, body_type, trap_type, section); //Imprime el estado del sistema cada resolution
             if (pid == 0){
-                std::cout << (100*ii)/config.iterations << "%.\r";
-                std::cout.flush();
+                std::cout << (100*ii)/config.iterations << "%.\n";
+                //std::cout.flush();
             }
         }
     }
