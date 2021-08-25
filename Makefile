@@ -18,9 +18,8 @@ run: main.x
 	@$(RUN)$<
 	@echo -e 'Done!'
 
-graph:
+graph: data/results/system_state.txt
 	@echo -e 'Ploting system variables... \c'
-	@bash scripts/print_system.sh
 	@gnuplot scripts/plot_system_state.gp
 	@echo -e 'Done!'
 
@@ -44,6 +43,9 @@ main.x: $(DEPENDENCIES)
 	@echo -e 'Building' $@ '... \c'
 	@$(CXX) $(FLAGS) -c $< -o $@
 	@echo -e 'Done!\n'
+
+data/results/system_state.txt:
+	@bash scripts/print_system.sh
 
 clean:
 	@rm -f data/results/*.csv data/*.err data/*.out *.x
