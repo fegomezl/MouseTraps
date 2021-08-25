@@ -21,12 +21,11 @@ run: main.x
 graph: data/results/system_state.txt
 	@echo -e 'Ploting system variables... \c'
 	@gnuplot scripts/plot_system_state.gp
+	@gnuplot scripts/analysis.gp
 	@echo -e 'Done!'
 
 show:
-	@xpdf data/energy.pdf &
-	@xpdf data/activation_partial.pdf &
-	@xpdf data/activation_total.pdf &
+	@xpdf data/energy.pdf data/activation_partial.pdf data/activation_total.pdf &
 
 send:
 	@cp data/*pdf $(OUT)
@@ -48,7 +47,7 @@ data/results/system_state.txt:
 	@bash scripts/print_system.sh
 
 clean:
-	@rm -f data/results/*.csv data/*.err data/*.out *.x
+	@rm -f data/results/*.csv data/*.err data/*.out *.x *.log
 
 rclean:
 	@rm -f data/*.pdf data/results/*.txt
