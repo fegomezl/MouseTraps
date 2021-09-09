@@ -31,6 +31,7 @@ void time_step (const int &pid, const CONFIG &config, domain &section, std::norm
                 v_0 = std::sqrt(2*config.g*section.traps[ii].rad);
                 if (v_t >= v_0){
                     section.traps[ii].active = 1;
+                    section.balls[ii].active = 1;
                     break;
                 }
             }

@@ -51,6 +51,7 @@ struct body{
   double mass = 0;               //Masa
   double rad = 0;                //Radio
   double I = (2*mass*rad*rad)/5; //Momento de inercia
+  double active = 0;
 
   vector3D pos;                  //Posición
   vector3D vel;                  //Velocidad
@@ -91,6 +92,8 @@ struct domain{
   std::vector<double> activation;          //Número de trampas activadas en el dominio por celda
   double activation_partial_sum = 0;       //Numero de trampas activadas en el dominio en un momento dado
   double activation_total_sum = 0;         //Numero de trampas activadas en el dominio
+  double calm_partial_sum = 0;             //Numero de trampas quietas agregadas
+  double calm_total_sum = 0;               //Numero de trampas quietas en un momento dado
   double energy = 0;                       //Energía del dominio
 };
 

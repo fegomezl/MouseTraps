@@ -15,14 +15,14 @@ int main (int argc, char **argv){
     MPI_Type_commit(&vector_type);
     
     MPI_Datatype body_type;  //Se crea el tipo de variable body para MPI
-    int lenghts_2[9] = {1, 1, 1, 1, 1, 1, 1, 1, 1};
-    MPI_Aint displacements_2[9] = {offsetof(body, mass), offsetof(body, rad), offsetof(body, I),
+    int lenghts_2[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    MPI_Aint displacements_2[10] = {offsetof(body, mass), offsetof(body, rad), offsetof(body, I), offsetof(body, active),
                                     offsetof(body, pos), offsetof(body, vel), offsetof(body, force),
                                     offsetof(body, angle), offsetof(body, omega), offsetof(body, torque)};
-    MPI_Datatype types_2[9] = {MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE,
+    MPI_Datatype types_2[10] = {MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE, MPI_DOUBLE,
                                vector_type, vector_type, vector_type,
                                vector_type, vector_type, vector_type};
-    MPI_Type_create_struct(9, lenghts_2, displacements_2, types_2, &body_type);
+    MPI_Type_create_struct(10, lenghts_2, displacements_2, types_2, &body_type);
     MPI_Type_commit(&body_type);
 
     MPI_Datatype trap_type;  //Se crea el tipo de variable trap para MPI

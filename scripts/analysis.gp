@@ -32,7 +32,13 @@ g(x) = A*(x**B)*((1-x)**C)
 A = exp(-a)
 B = -b
 C = -c
-fit[0.05:0.8] g(x) file u 4:3 via A,B,C
+fit[0:1] g(x) file u 4:3 via A,B,C
+
+h(x,y) = D*(x**E)*(y**F)
+D = exp(-a)
+E = -b
+F = -c
+fit[0:1] h(x,y) file u 4:(1-$4):3 via D,E,F
 
 set title 'Density (semilog)'
 set o 'data/density_semilog.pdf'

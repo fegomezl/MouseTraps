@@ -35,3 +35,15 @@ set yr [0:1]
 set yl 'F(x)'
 set o 'data/activation_total.pdf'
 p file u 1:4 ls 1 t 'F(x)'
+
+set title 'Densidad de pelotas perturbadas'
+set yr [0:]
+set yl 'z(x)'
+set o 'data/calm_partial.pdf'
+p file u 1:5 ls 1 t 'z(x)'
+
+set title 'Cantidad de pelotas quietas'
+set yr [0:1]
+set yl 'Z(x)'
+set o 'data/calm_total.pdf'
+p file u 1:6 ls 1 t 'Z(x)'

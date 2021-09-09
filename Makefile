@@ -21,8 +21,9 @@ run: main.x
 graph: data/results/system_state.txt
 	@echo -e 'Ploting system variables... \c'
 	@gnuplot scripts/plot_system_state.gp
-	@gnuplot scripts/analysis.gp
 	@echo -e 'Done!'
+
+#@gnuplot scripts/analysis.gp
 
 show:
 	@xpdf data/energy.pdf data/activation_partial.pdf data/activation_total.pdf &
