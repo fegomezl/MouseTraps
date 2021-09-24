@@ -19,51 +19,8 @@ set obj 1 rect from graph 0, 1 to graph 0.22, 0.93 fc rgb "white"
 set lab 1 Init at graph 0, 0.96
 
 set xr [0:]
-set yr [0:]
-set xl 'Porcentaje de activaciones'
+set xl 'Porcentaje de pelotas en movimiento'
 
-f(x) = a + b*log(x) + c*log(1-x)
-a = 0.2
-b = -1
-c = -1
-fit[0.05:0.8] f(x) file u 4:(-log($3)) via a,b,c
-
-g(x) = A*(x**B)*((1-x)**C)
-A = exp(-a)
-B = -b
-C = -c
-fit[0:1] g(x) file u 4:3 via A,B,C
-
-h(x,y) = D*(x**E)*(y**F)
-D = exp(-a)
-E = -b
-F = -c
-fit[0:1] h(x,y) file u 4:(1-$4):3 via D,E,F
-
-set title 'Density (semilog)'
-set o 'data/density_semilog.pdf'
-p file u 4:(-log($3)) ls 1 t 'data', f(x) ls 2 t 'fit 1', -log(g(x)) ls 3 t 'fit 2'
-
-set title 'Density'
-set o 'data/density.pdf'
-p file u 4:3 ls 1 t 'data', exp(-f(x)) ls 2 t 'fit 1', g(x) ls 3 t 'fit 2'
-set xl 'Tiempo (s)'
-p file u 1:3 ls 1 t 'data', file u 1:(exp(-f($4))) w l ls 2 t 'fit 1', file u 1:(g($4)) w l ls 3 t 'fit 2'
-
-f(x) = a + b*x
-a = 3.5
-b = 0.025
-fit[35:60] f(x) file u 1:(-log($2)) via a,b
-
-g(x) = A*exp(B*x)
-A = exp(-a)
-B = -b
-fit[35:60] g(x) file u 1:2 via A,B
-
-set title 'Energy (semilog)'
-set o 'data/energy_semilog.pdf'
-p file u 1:(-log($2)) ls 1 t 'data', f(x) ls 2 t 'fit 1', -log(g(x)) ls 3 t 'fit 2'
-
-set title 'Convolution'
-set o 'data/convolution.pdf'
-p file u 1:(exp(b*$1)*$3) ls 1 not
+set title 'Calm analysis'
+set o 'data/calm_analysis.pdf'
+p file u 6:($3-$5) ls 1 not

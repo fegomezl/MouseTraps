@@ -26,7 +26,7 @@ void print(const int &time, const int &pid, const CONFIG &config,
         section.energy += E*std::pow(10,-3);
 
         //Numero de pelotas quietas
-        if (std::abs((E - section.balls[ii].mass*section.balls[ii].rad*config.g))/E_0 < std::pow(10, -12) && section.balls[ii].active == 1)
+        if (std::abs((E - section.balls[ii].mass*section.balls[ii].rad*config.g))/E_0 > std::pow(10, -12))
             section.calm_total_sum += 1;
     }
 
