@@ -23,10 +23,10 @@ void print(const int &time, const int &pid, const CONFIG &config,
         //Energia mecanica por particula
         double E = 0.5*section.balls[ii].mass*norma2(section.balls[ii].vel) + 0.5*section.balls[ii].I*norma2(section.balls[ii].omega) 
                  + section.balls[ii].mass*section.balls[ii].pos.z()*config.g;
-        section.energy += E*std::pow(10,-6);
+        section.energy += E*std::pow(10,-3);
 
         //Numero de pelotas quietas
-        if (std::abs((E - section.balls[ii].mass*section.balls[ii].rad*config.g))/E_0 < config.err && section.balls[ii].active == 1)
+        if (std::abs((E - section.balls[ii].mass*section.balls[ii].rad*config.g))/E_0 < std::pow(10, -12) && section.balls[ii].active == 1)
             section.calm_total_sum += 1;
     }
 
@@ -46,6 +46,7 @@ void print(const int &time, const int &pid, const CONFIG &config,
     if (pid == pid_0){  //Datos globales del sistema
         //Promedia el numero de activaciones parcial
         activation_sum /= 1.0*config.resolution*config.dt;
+        calm_sum /= 1.0*config.resolution*config.dt;
         //Imprime los datos
         std::string fname = "data/results/data_system-" + std::to_string(time) + ".csv";
         std::ofstream fout(fname);

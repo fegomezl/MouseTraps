@@ -37,7 +37,7 @@ set o 'data/activation_total.pdf'
 p file u 1:4 ls 1 t 'F(x)'
 
 set title 'Densidad de pelotas perturbadas'
-set yr [0:]
+unset yr
 set yl 'z(x)'
 set o 'data/calm_partial.pdf'
 p file u 1:5 ls 1 t 'z(x)'
