@@ -24,3 +24,10 @@ set xl 'Porcentaje de pelotas en movimiento'
 set title 'Calm analysis'
 set o 'data/calm_analysis.pdf'
 p file u 6:($3-$5) ls 1 not
+
+f(x,y) = K*(x**a)*(y**b)
+K = 0.1
+a = 1
+b = 1
+
+fit[:][:] f(x,y) file u (1-$4):5:3 via K,a,b 

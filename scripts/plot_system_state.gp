@@ -2,6 +2,8 @@ set g
 set key opaque
 set term pdf
 set ls 1 lc rgb "dark-blue" pt 0 ps 0.5 lt 1 lw 0.5
+set ls 2 lc rgb "dark-red" pt 0 ps 0.5 lt 1 lw 0.5
+set ls 3 lc rgb "dark-green" pt 0 ps 0.5 lt 1 lw 0.5
 
 file = 'data/results/system_state.txt'
 
@@ -47,3 +49,9 @@ set yr [0:1]
 set yl 'Z(x)'
 set o 'data/calm_total.pdf'
 p file u 1:6 ls 1 t 'Z(x)'
+
+set title 'Sistema total'
+unset yr
+set yl 'Porcentaje de pelotas'
+set o 'data/system.pdf'
+p file u 1:(1-$4) ls 1 t 'X', file u 1:6 ls 2 t 'Y', file u 1:($4-$6) ls 3 t 'Z'
